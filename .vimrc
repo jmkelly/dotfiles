@@ -3,8 +3,6 @@ syntax on
 filetype plugin indent on
 inoremap kj <Esc>
 set nocompatible
-set nocompatible
-set nocompatible
 "allow unsaved background buffers and remember marks/undo for them
 set hidden
 " remember more commands and search history
@@ -21,7 +19,7 @@ set hlsearch
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
 " highlight current line
-set cursorline
+"set cursorline
 set cmdheight=2
 set switchbuf=useopen
 set numberwidth=5
@@ -30,7 +28,7 @@ set winwidth=79
 set shell=bash
 "Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
-set t_ti= t_te=
+" set t_ti= t_te=
 " keep more context when scrolling off the end of a buffer
 set scrolloff=3
 " Store temporary files in a central spot
