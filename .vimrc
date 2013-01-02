@@ -2,20 +2,28 @@ call pathogen#infect()
 syntax on
 filetype plugin indent on
 inoremap kj <Esc>
+"don't automatically switch to insert mode when conque is opened
 set nocompatible
 "allow unsaved background buffers and remember marks/undo for them
 set hidden
 " remember more commands and search history
 set history=10000
 set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set number
+"set tabstop=2
+"set shiftwidth=4
+"set softtabstop=4
 set autoindent
 set laststatus=2
 set showmatch
 set incsearch
-set hlsearch
+"set hlsearch
+let tabsize = 2
+execute "set tabstop=".tabsize
+execute "set shiftwidth=".tabsize
+execute "set softtabstop=".tabsize
+
+
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
 " highlight current line
@@ -28,7 +36,7 @@ set winwidth=79
 set shell=bash
 "Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
-" set t_ti= t_te=
+"set t_ti= t_te=
 " keep more context when scrolling off the end of a buffer
 set scrolloff=3
 " Store temporary files in a central spot
@@ -63,4 +71,23 @@ let mapleader=","
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" Rspec specific setting for running tests"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+function! RSpecFile()
+    :execute "ConqueTermSplit rspec " . expand("%")  
+endfunction
+
+map <leader>R :call RSpecFile() <ESC>
+
+
+command! RSpecFile call RSpecFile()
+
+function! RSpecCurrent()
+    :execute "ConqueTermSplit rspec " . expand("%") . ":" .line(".") 
+endfunction
+
+map <leader>r :call RSpecCurrent() <ESC>
+command! RSpecCurrent call RSpecCurrent()
  
