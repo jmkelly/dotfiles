@@ -67,6 +67,15 @@ local plugins = {
 		end,
 	},
 
+	{
+		"Hoffs/omnisharp-extended-lsp.nvim",
+	},
+	{
+		"Exafunction/codeium.vim",
+		event = "VeryLazy",
+		config = function()
+		end,
+  }
 	-- To make a plugin not be loaded
 	-- {
 	--   "NvChad/nvim-colorizer.lua",
