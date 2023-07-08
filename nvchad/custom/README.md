@@ -4,4 +4,5 @@
 2.  Following instructions at https://nvchad.com/docs/quickstart/install to install nvchad
 3.  `git clone https://github.com/jmkelly/dotfiles.git` into `~` directory
 4.  `cd ~/dotfiles/nvchad`
-5.  `ln -s custom/ ~/.config/nvim/lua/custom/`
+5.  `rm ~./config/nvim/lua/config`
+6.  `ln -s custom/ ~/.config/nvim/lua/`
