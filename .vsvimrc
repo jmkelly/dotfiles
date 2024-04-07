@@ -1,4 +1,6 @@
 :let mapleader="\<space>"
 :inoremap kj <Esc>
-:nnoremap <leader>ff :vsc Edit.GoToAll
-:nnoremap <leader>ca :vsc EditorContextMenus.CodeWindow.QuickActionsForPosition
+:nnoremap <leader>ff :vsc Edit.GoToAll<CR>
+:nnoremap <leader>ca :vsc EditorContextMenus.CodeWindow.QuickActionsForPosition<CR>
+:nnoremap <leader>h :vsc Window.PreviousTab<CR>
+:nnoremap <leader>l :vsc Window.NextTab<CR>
