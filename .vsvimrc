@@ -4,3 +4,6 @@
 :nnoremap <leader>ca :vsc EditorContextMenus.CodeWindow.QuickActionsForPosition<CR>
 :nnoremap <leader>h :vsc Window.PreviousTab<CR>
 :nnoremap <leader>l :vsc Window.NextTab<CR>
+:nnoremap <leader>dr :vsc Debug.Start<CR>
+:nnoremap <leader>db :vsc Build.BuildSolution<CR>
+:nooremap <leader>dt :vsc TestExplorer.RunAllTests<CR>
