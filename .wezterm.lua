@@ -4,14 +4,6 @@ local config = wezterm.config_builder()
 local dimmer = { brightness = 0.1 }
 
 
-wezterm.on('update-right-status', function(window)
-	local leader = ''
-	if window:leader_is_active() then
-		leader = 'LEADER'
-	end
-	window:set_right_status(leader)
-end)
-
 local function is_windows()
 	return wezterm.target_triple == 'x86_64-pc-windows-msvc'
 end
@@ -26,6 +18,38 @@ local function set_background_file(path)
 		}
 	}
 end
+
+--this doens't work yet
+local function get_cpu_load()
+	if is_windows() then
+		local cmd = {"powershell -command \"Get-Counter '\\Processor(_Total)\\% Processor Time' | Select-Object -ExpandProperty CounterSamples | Select-Object -ExpandProperty CookedValue\""}
+		local process = wezterm.proc.spawn(cmd)
+		local success, output = process:wait()
+		if success then
+			return tonumber(output:match("%d+.%d+"))
+		else
+			return nil
+		end
+	end
+end
+
+wezterm.on('update-right-status', function(window)
+	local leader = ''
+	local date = wezterm.strftime '%H:%M %h %e'
+	if window:leader_is_active() then
+		leader = 'LEADER'
+	end
+
+	-- window:set_right_status(wezterm.format { { Text = leader .. ' ' .. date .. 'CPU: ' .. get_cpu_load() } })
+	window:set_right_status(wezterm.format { { Text = leader .. ' ' .. date  } })
+end)
+
+config.color_scheme = 'Tokyo Night'
+config.font = wezterm.font 'JetBrains Mono'
+
+config.use_fancy_tab_bar = true
+config.show_tabs_in_tab_bar = true
+config.show_new_tab_button_in_tab_bar = true
 
 --this needs more work
 -- config.launch_menu = {
@@ -91,7 +115,6 @@ config.keys = {
 
 
 config.inactive_pane_hsb = {
-	--saturation = 0.5,
 	brightness = 0.4
 }
 
@@ -131,10 +154,4 @@ else
 	set_background_file("/home/james/.config/wezterm/nord.png")
 	config.font_size = 13
 end
-config.color_scheme = 'Tokyo Night'
-config.font = wezterm.font 'JetBrains Mono'
-
-config.use_fancy_tab_bar = true
-config.show_tabs_in_tab_bar = true
-config.show_new_tab_button_in_tab_bar = true
 return config
