@@ -13,9 +13,11 @@ return {
 		-- Additional lua configuration, makes nvim stuff amazing!
 		'folke/neodev.nvim',
 	},
-	config = function()
+	config = function(opts)
 		require 'lspconfig'.omnisharp.setup {
 			enable_roslyn_analyzers = true
 		}
+
+		require('rosyln').setup(opts)
 	end
 }
