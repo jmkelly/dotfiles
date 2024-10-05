@@ -12,6 +12,7 @@ return {
 		-- 	enable_roslyn_analyzers = true
 		-- }
 		--
-		require('rosyln').setup()
+		require 'lspconfig'.rosyln.setup { }
+
 	end
 }

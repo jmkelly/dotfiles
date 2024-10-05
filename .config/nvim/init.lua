@@ -116,7 +116,7 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  omnisharp = {},
+  roslyn = {},
 
   lua_ls = {
     Lua = {
