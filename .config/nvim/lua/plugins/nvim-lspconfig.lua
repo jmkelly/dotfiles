@@ -5,14 +5,12 @@ return {
 		-- Automatically install LSPs to stdpath for neovim
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
-		'seblj/roslyn.nvim',
 	},
-	config = function()
+	config = function(opts)
 		-- require 'lspconfig'.omnisharp.setup {
 		-- 	enable_roslyn_analyzers = true
 		-- }
-		--
-		require 'lspconfig'.rosyln.setup { }
 
+		require('roslyn').setup(opts)
 	end
 }
