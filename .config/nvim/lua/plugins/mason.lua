@@ -1,21 +1,10 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		config = function()
-			require('mason').setup()
-			require('mason-lspconfig').setup()
-			-- require('mason-lspconfig').setup({
-			-- 	handlers = {
-			-- 		omnisharp = {
-			-- 			handlers = {
-			-- 				["textDocument/definition"] = require('omnisharp_extended').handler
-			-- 			}
-			-- 		}
-			-- 	}
-			-- }
-			-- )
-		end
-	},
-	{ "williamboman/mason-lspconfig.nvim" },
-	{ "neovim/nvim-lspconfig" }
+	{"williamboman/mason.nvim", opts = {
+		registries = {
+			'github:mason-org/mason-registry',
+			'github:syndim/mason-registry'
+		}
+	}},
+	{"williamboman/mason-lspconfig.nvim", opts = {}},
+	{"neovim/nvim-lspconfig" } --no setup function on lsp-config
 }

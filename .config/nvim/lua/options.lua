@@ -1,10 +1,3 @@
--- [[ Setting options ]]
--- See `:help vim.o`
--- NOTE: You can change these options as you wish!
-
--- Set highlight on search
-vim.o.hlsearch = true
-
 -- Make line numbers default
 vim.wo.number = true
 
@@ -53,9 +46,6 @@ vim.o.expandtab = false
 --this helps to see the current line
 vim.opt.cursorline = true
 
-
-
-
 local powershell_options = {
   shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
   shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
@@ -72,7 +62,3 @@ if vim.loop.os_uname().sysname == "Windows_NT" then
 	  vim.opt[option] = value
 	end
 end
-
-
-
-
