@@ -50,3 +50,8 @@ GCM_VERSION=2.6.0
 GCM_APP="gcm-linux_amd64.$GCM_VERSION.deb"
 wget https://github.com/git-ecosystem/git-credential-manager/releases/download/v$GCM_VERSION/$GCM_APP
 sudo dpkg -i $GCM_APP
+git-credential-manager configure
+
+git config --global credential.credentialStore cache
+#set the github creds by logging into github
+git-credential-manager github login
