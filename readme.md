@@ -6,11 +6,19 @@ My setup is primary for my C# development. Could be adjusted for any dev with tw
 
 On a clean ubuntu 24.04 install
 
+### 
+
+BEWARE:  This script will remove any existing neovim configuration and will install a bunch of software.
+Please read the script prior to running.
+
+##
+
 ```
 git clone https://github.com/jamesmccarthy/dotfiles.git
 cd dotfiles
 ./setup.sh
 ```
+
 
 ## Apps
 
