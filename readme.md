@@ -6,21 +6,16 @@ My setup is primary for my C# development. Could be adjusted for any dev with tw
 
 On a clean ubuntu 24.04 install
 
-### 
-
-BEWARE:  This script will remove any existing neovim configuration and will install a bunch of software.
-Please read the script prior to running.
-
-##
+#### BEWARE:  This script will remove any existing neovim, tmux, and wezterm configuration and will install software from the internet. Please read the script prior to running.  If you aren't comfortable installing this in your primary system, a virtual machine is a good place to test it out.
 
 ```
-git clone https://github.com/jamesmccarthy/dotfiles.git
+git clone https://github.com/jmkelly/dotfiles.git
 cd dotfiles
 ./setup.sh
 ```
 
 
-## Apps
+## App
 
 - wezterm 
 - lazygit
