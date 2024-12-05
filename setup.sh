@@ -6,7 +6,7 @@ curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/ap
 echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 
 # Update the package list and install necessary packages
-sudo apt-get update && sudo apt-get install -y software-properties-common curl wget git npm fontconfig unzip ripgrep fd-find dotnet-sdk-8.0 wezterm && sudo rm -rf /var/lib/apt/lists/*
+sudo apt-get update && sudo apt-get install -y software-properties-common curl wget git npm fontconfig unzip ripgrep fd-find dotnet-sdk-8.0 wezterm tmux && sudo rm -rf /var/lib/apt/lists/*
 
 # Install a Nerd Font (e.g., FiraCode Nerd Font)
 FONT_NAME=JetBrainsMono
