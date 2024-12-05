@@ -44,6 +44,7 @@ sudo rm -rf $HOME/.config/nvim && sudo rm -rf $HOME/dotfiles  && \
 	git clone https://github.com/jmkelly/dotfiles.git $HOME/dotfiles && \
 	cp $HOME/dotfiles/.config/nvim $HOME/.config/nvim -R && \
 	cp $HOME/dotfiles/.wezterm.lua $HOME/.config/wezterm/wezterm.lua && \
+	cp $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf && \
 	cp $HOME/dotfiles/nord.png $HOME/.config/wezterm/nord.png
 
 GCM_VERSION=2.6.0
