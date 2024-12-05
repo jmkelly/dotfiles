@@ -23,11 +23,11 @@ cd dotfiles
 
 ## Screenshots
 
-https://github.com/jmkelly/dotfiles/blob/main/Screenshot%20from%202024-12-05%2020-17-24.png
+![wezterm](Screenshot%20from%202024-12-05%2020-17-24.png)
 
-https://github.com/jmkelly/dotfiles/blob/main/Screenshot%20from%202024-12-05%2020-12-09.png
+![lazygit](Screenshot%20from%202024-12-05%2020-12-09.png)
 
-https://github.com/jmkelly/dotfiles/blob/main/Screenshot%20from%202024-12-05%2020-13-51.png
+![neovim](Screenshot%20from%202024-12-05%2020-13-51.png)
 
 
 
