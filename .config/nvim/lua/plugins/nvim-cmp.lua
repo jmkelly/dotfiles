@@ -1,23 +1,14 @@
 return {
 	"hrsh7th/nvim-cmp",
-	version = false, -- last release is way too old
-	--event = "InsertEnter",
+	version = false,
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"L3MON4D3/LuaSnip"
 	},
-	-- Not all LSP servers add brackets when completing a function.
-	-- To better deal with this, LazyVim adds a custom option to cmp,
-	-- that you can configure. For example:
-	--
-	-- ```lua
-	-- opts = {
-	--   auto_brackets = { "python" }
-	-- }
-	-- ```
 	opts = function()
+		--setup from my original kickstart file, it works
 		local cmp = require 'cmp'
 		local luasnip = require 'luasnip'
 		require('luasnip.loaders.from_vscode').lazy_load()
