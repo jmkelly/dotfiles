@@ -35,6 +35,7 @@ config.font = wezterm.font 'JetBrains Mono'
 config.use_fancy_tab_bar = true
 config.show_tabs_in_tab_bar = true
 config.show_new_tab_button_in_tab_bar = true
+config.audible_bell = "Disabled"
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
 
