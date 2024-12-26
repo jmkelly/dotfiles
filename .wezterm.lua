@@ -121,7 +121,7 @@ config.key_tables = {
 }
 if is_windows() then
 	config.default_prog = { 'pwsh' }
-	set_background_file("C:/Users/james.kelly/dotfiles/nord.png")
+	set_background_file("C:/Users/james.kelly/Documents/code/dotfiles/nord.png")
 	config.font_size = 10
 else
 	config.default_prog = { 'bash' }
