@@ -1,6 +1,23 @@
+#!/bin/bash
+
 # Use the latest Ubuntu LTS as the base image
 # from ubuntu:24.04
 # shell script to setup a base dev setup on host
+
+#some setup
+#clone my neovim config quick start
+TEMP_DIR=/tmp/dotfiles
+mkdir -p $TEMP_DIR
+mkdir -p $HOME/.config/wezterm
+git clone https://github.com/jmkelly/dotfiles.git $TEMP_DIR && \
+#backup existing nvim config just in case
+mv $HOME/.config/nvim $HOME/.config/nvim_bak_$(date +%Y%m%d%H%M%S) && \
+cp $TEMP_DIR/.config/nvim $HOME/.config/nvim -R && \
+cp $TEMP_DIR/.wezterm.lua $HOME/.config/wezterm/wezterm.lua && \
+cp $TEMP_DIR/.tmux.conf $HOME/.tmux.conf && \
+cp $TEMP_DIR/nord.png $HOME/.config/wezterm/nord.png
+rm -rf $TEMP_DIR
+
 #install wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
 echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
@@ -15,7 +32,7 @@ FONT_VERSION=v3.2.1
 sudo mkdir -p /usr/share/fonts/nerdfonts && \
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/$FONT_VERSION/$FONT_NAME.zip -O /tmp/$FONT_NAME.zip && \
     sudo unzip /tmp/$FONT_NAME.zip -d /usr/share/fonts/nerdfonts/ && \ fc-cache -fv && \
-	sudo rm /tmp/$FONT_NAME.sip
+	sudo rm /tmp/$FONT_NAME.zip
 
 
 # install lazygit from source
@@ -23,8 +40,7 @@ LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/re
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
-	#sudo rm lazygit* -R 
-
+sudo rm lazygit.tar.gz
 
 # install neovim and add to path
 NEOVIM_VERSION=0.10.1
@@ -36,23 +52,23 @@ curl -LO https://github.com/neovim/neovim/releases/download/v$NEOVIM_VERSION/nvi
 	mv squashfs-root /
 	sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 
-# set up neovim configurations (optional, you can add more configurations as needed)
-mkdir -p $HOME/.config/wezterm
 
-#clone my neovim config quick start
-sudo rm -rf $HOME/.config/nvim && sudo rm -rf $HOME/dotfiles  && \
-	git clone https://github.com/jmkelly/dotfiles.git $HOME/dotfiles && \
-	cp $HOME/dotfiles/.config/nvim $HOME/.config/nvim -R && \
-	cp $HOME/dotfiles/.wezterm.lua $HOME/.config/wezterm/wezterm.lua && \
-	cp $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf && \
-	cp $HOME/dotfiles/nord.png $HOME/.config/wezterm/nord.png
+#install powershell
+PWSH_VERSION=7.4.6
+wget "https://github.com/PowerShell/PowerShell/releases/download/v$PWSH_VERSION/powershell_$PWSH_VERSION-1.deb_amd64.deb"
+sudo dpkg -i powershell_$PWSH_VERSION-1.deb_amd64.deb
+sudo rm powershell_$PWSH_VERSION-1.deb_amd64.deb
+
 
 GCM_VERSION=2.6.0
 GCM_APP="gcm-linux_amd64.$GCM_VERSION.deb"
 wget https://github.com/git-ecosystem/git-credential-manager/releases/download/v$GCM_VERSION/$GCM_APP
 sudo dpkg -i $GCM_APP
+sudo rm $GCM_APP
 git-credential-manager configure
 
 git config --global credential.credentialStore cache
 #set the github creds by logging into github
 git-credential-manager github login
+
+#cleanup
