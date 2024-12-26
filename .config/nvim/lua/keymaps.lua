@@ -11,7 +11,6 @@ vim.keymap.set({'n'},'<leader>rn', vim.lsp.buf.rename, {buffer=bufnr, desc='LSP:
 
 vim.keymap.set({ 'i' }, 'kj', '<Esc>', { silent = true })
 --open neotree.....i'm use to this keymap from nerdtree days
-vim.keymap.set('n', "<leader>nt", ':Neotree toggle<CR>', { desc = 'Open or close Neotree', silent = true })
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`

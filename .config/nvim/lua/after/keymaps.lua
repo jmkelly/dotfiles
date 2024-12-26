@@ -22,6 +22,9 @@ vim.keymap.set('n','gD', vim.lsp.buf.declaration, {desc='[G]oto [D]eclaration'})
 vim.keymap.set('n','<leader>wa', vim.lsp.buf.add_workspace_folder, {desc='[W]orkspace [A]dd Folder'})
 vim.keymap.set('n','<leader>wr', vim.lsp.buf.remove_workspace_folder, {desc='[W]orkspace [R]emove Folder'})
 
+--leaving the <leader>nt because this is what I'm used to from nerdtree....but over time if I can get used to <leader>oi, i'll remove it
+vim.keymap.set('n', "<leader>nt", require('oil').open_float, { desc = 'Open Oil', silent = true })
+vim.keymap.set('n', "<leader>oi", require('oil').open_float, { desc = 'Open Oil', silent = true })
 
 --harpoon
 local harpoon = require("harpoon")
