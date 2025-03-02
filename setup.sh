@@ -10,13 +10,13 @@ TEMP_DIR=/tmp/dotfiles
 mkdir -p $TEMP_DIR
 mkdir -p $HOME/.config/wezterm
 git clone https://github.com/jmkelly/dotfiles.git $TEMP_DIR && \
-#backup existing nvim config just in case
-mv $HOME/.config/nvim $HOME/.config/nvim_bak_$(date +%Y%m%d%H%M%S) && \
+	#backup existing nvim config just in case if it exists
+[ -f $HOME/.config/nvim ] && mv $HOME/.config/nvim $HOME/.config/nvim_bak_$(date +%Y%m%d%H%M%S)
+		
 cp $TEMP_DIR/.config/nvim $HOME/.config/nvim -R && \
-cp $TEMP_DIR/.wezterm.lua $HOME/.config/wezterm/wezterm.lua && \
-cp $TEMP_DIR/.tmux.conf $HOME/.tmux.conf && \
-cp $TEMP_DIR/nord.png $HOME/.config/wezterm/nord.png
-rm -rf $TEMP_DIR
+    cp $TEMP_DIR/.wezterm.lua $HOME/.config/wezterm/wezterm.lua && \
+		cp $TEMP_DIR/.tmux.conf $HOME/.tmux.conf && \
+		cp $TEMP_DIR/nord.png $HOME/.config/wezterm/nord.png
 
 #install wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
@@ -30,8 +30,8 @@ FONT_NAME=JetBrainsMono
 FONT_VERSION=v3.2.1
 
 sudo mkdir -p /usr/share/fonts/nerdfonts && \
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/$FONT_VERSION/$FONT_NAME.zip -O /tmp/$FONT_NAME.zip && \
-    sudo unzip /tmp/$FONT_NAME.zip -d /usr/share/fonts/nerdfonts/ && \ fc-cache -fv && \
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/$FONT_VERSION/$FONT_NAME.zip -O /tmp/$FONT_NAME.zip && \
+	sudo unzip /tmp/$FONT_NAME.zip -d /usr/share/fonts/nerdfonts/ && \ fc-cache -fv && \
 	sudo rm /tmp/$FONT_NAME.zip
 
 
@@ -42,9 +42,6 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 sudo rm lazygit.tar.gz
 
-TEMP_DIR=/tmp/neovim
-mkdir -p $TEMP_DIR
-cd $TEMP_DIR
 
 NEOVIM_VERSION=0.10.4
 INSTALL_DIR=/opt/nvim
@@ -55,14 +52,13 @@ TAR=$FOLDER.tar.gz
 URL=https://github.com/neovim/neovim/releases/download/v$NEOVIM_VERSION/$TAR
 
 # Download and extract
-wget -q $URL -O $TAR && \
-    tar xzf $TAR && \
-    sudo mv $FOLDER $INSTALL_DIR
+	wget -q $URL -O $TEMP_DIR/$TAR && \
+	tar xzf $TEMP_DIR/$TAR && \
+	sudo mv $TEMP_DIR/$FOLDER $INSTALL_DIR
 
 # Create a symlink
 sudo ln -sf $INSTALL_DIR/bin/nvim /usr/bin/nvim
 echo installed neovim to $INSTALL_DIR
-rm $TEMP_DIR -R
 
 
 #install powershell
@@ -72,16 +68,17 @@ sudo dpkg -i powershell_$PWSH_VERSION-1.deb_amd64.deb
 echo installed powershell
 sudo rm powershell_$PWSH_VERSION-1.deb_amd64.deb
 
-
-GCM_VERSION=2.6.0
-GCM_APP="gcm-linux_amd64.$GCM_VERSION.deb"
-wget https://github.com/git-ecosystem/git-credential-manager/releases/download/v$GCM_VERSION/$GCM_APP
-sudo dpkg -i $GCM_APP
-sudo rm $GCM_APP
-git-credential-manager configure
-
-git config --global credential.credentialStore cache
-#set the github creds by logging into github
-git-credential-manager github login
+#
+# GCM_VERSION=2.6.0
+# GCM_APP="gcm-linux_amd64.$GCM_VERSION.deb"
+# wget https://github.com/git-ecosystem/git-credential-manager/releases/download/v$GCM_VERSION/$GCM_APP
+# sudo dpkg -i $GCM_APP
+# sudo rm $GCM_APP
+# git-credential-manager configure
+#
+# git config --global credential.credentialStore cache
+# #set the github creds by logging into github
+# git-credential-manager github login
 
 #cleanup
+rm $TEMP_DIR -rf
