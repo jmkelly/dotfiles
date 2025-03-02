@@ -42,21 +42,34 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 sudo rm lazygit.tar.gz
 
-# install neovim and add to path
-NEOVIM_VERSION=0.10.1
-INSTALL_DIR=/opt/nvim
+TEMP_DIR=/tmp/neovim
+mkdir -p $TEMP_DIR
+cd $TEMP_DIR
 
-curl -LO https://github.com/neovim/neovim/releases/download/v$NEOVIM_VERSION/nvim.appimage && \
-	sudo chmod u+x nvim.appimage && \
-	./nvim.appimage --appimage-extract && \
-	mv squashfs-root /
-	sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+NEOVIM_VERSION=0.10.4
+INSTALL_DIR=/opt/nvim
+ARCH=x86_64
+FOLDER=nvim-linux-$ARCH
+TAR=$FOLDER.tar.gz
+
+URL=https://github.com/neovim/neovim/releases/download/v$NEOVIM_VERSION/$TAR
+
+# Download and extract
+wget -q $URL -O $TAR && \
+    tar xzf $TAR && \
+    sudo mv $FOLDER $INSTALL_DIR
+
+# Create a symlink
+sudo ln -sf $INSTALL_DIR/bin/nvim /usr/bin/nvim
+echo installed neovim to $INSTALL_DIR
+rm $TEMP_DIR -R
 
 
 #install powershell
 PWSH_VERSION=7.4.6
 wget "https://github.com/PowerShell/PowerShell/releases/download/v$PWSH_VERSION/powershell_$PWSH_VERSION-1.deb_amd64.deb"
 sudo dpkg -i powershell_$PWSH_VERSION-1.deb_amd64.deb
+echo installed powershell
 sudo rm powershell_$PWSH_VERSION-1.deb_amd64.deb
 
 
