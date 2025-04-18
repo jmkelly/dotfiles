@@ -1,6 +1,7 @@
 # My Ubuntu 24.04 dev setup 
 
 My setup is primary for my C# development. Could be adjusted for any dev with tweaks to the neovim config
+It includes
 
 ## Install
 
@@ -20,6 +21,9 @@ cd dotfiles
 - wezterm 
 - lazygit
 - neovim
+    - rosyln language server
+    - netcoredbg debugger
+    - neotest-dotnet for tests in neovim that also support debugging
 - git credential manager
 - tmux
 - dotnet-8-sdk
