@@ -14,7 +14,7 @@ mkdir -p $TEMP_DIR
 mkdir -p $HOME/.config/wezterm
 git clone https://github.com/jmkelly/dotfiles.git $TEMP_DIR && \
 	#backup existing nvim config just in case if it exists
-[ -f $HOME/.config/nvim ] && mv $HOME/.config/nvim $HOME/.config/nvim_bak_$(date +%Y%m%d%H%M%S)
+[ -d $HOME/.config/nvim ] && mv $HOME/.config/nvim $HOME/.config/nvim_bak_$(date +%Y%m%d%H%M%S)
 		
 cp $TEMP_DIR/.config/nvim $HOME/.config/nvim -R && \
     cp $TEMP_DIR/.wezterm.lua $HOME/.config/wezterm/wezterm.lua && \
