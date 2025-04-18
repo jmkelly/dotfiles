@@ -1,74 +1,88 @@
 --telescope ones from kickstart
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
+--
+--
+--some helper functions
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
+local dap = require('dap')
+local harpoon = require("harpoon")
+local telescope = require("telescope.builtin")
+
+
+map('n', '<leader><space>', telescope.buffers, { desc = '[ ] Find existing buffers' })
+map('n', '<leader>gf', telescope.git_files, { desc = 'Search [G]it [F]iles' })
+map('n', '<leader>ff', telescope.find_files, { desc = '[F]ind [F]iles' })
+map('n', '<leader>sh', telescope.help_tags, { desc = '[S]earch [H]elp' })
+map('n', '<leader>fg', telescope.live_grep, { desc = '[F]ind by [G]rep' })
 
 --lsp jumps
-vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions,{desc =  '[G]oto [D]efinition'})
-vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {desc = '[G]oto [R]eferences'})
-vim.keymap.set('n', 'gI', require('telescope.builtin').lsp_implementations, {desc = '[G]oto [I]mplementation'})
-vim.keymap.set('n', '<leader>D', require('telescope.builtin').lsp_type_definitions, {desc = 'Type [D]efinition'})
-vim.keymap.set('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, {desc = '[D]ocument [S]ymbols'})
-vim.keymap.set('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, {desc = '[W]orkspace [S]ymbols'})
+map('n', 'gd', telescope.lsp_definitions,{desc =  '[G]oto [D]efinition'})
+map('n', 'gr', telescope.lsp_references, {desc = '[G]oto [R]eferences'})
+map('n', 'gI', telescope.lsp_implementations, {desc = '[G]oto [I]mplementation'})
+map('n', '<leader>D', telescope.lsp_type_definitions, {desc = 'Type [D]efinition'})
+map('n', '<leader>ds', telescope.lsp_document_symbols, {desc = '[D]ocument [S]ymbols'})
+map('n', '<leader>ws', telescope.lsp_dynamic_workspace_symbols, {desc = '[W]orkspace [S]ymbols'})
 
 -- See `:help K` for why this keymap
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, {desc='Hover Documentation'})
-vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, {desc='Signature Documentation'})
+map('n', 'K', vim.lsp.buf.hover, {desc='Hover Documentation'})
+map('n', '<C-k>', vim.lsp.buf.signature_help, {desc='Signature Documentation'})
 
 -- Lesser used LSP functionality
-vim.keymap.set('n','gD', vim.lsp.buf.declaration, {desc='[G]oto [D]eclaration'})
-vim.keymap.set('n','<leader>wa', vim.lsp.buf.add_workspace_folder, {desc='[W]orkspace [A]dd Folder'})
-vim.keymap.set('n','<leader>wr', vim.lsp.buf.remove_workspace_folder, {desc='[W]orkspace [R]emove Folder'})
+map('n','gD', vim.lsp.buf.declaration, {desc='[G]oto [D]eclaration'})
+map('n','<leader>wa', vim.lsp.buf.add_workspace_folder, {desc='[W]orkspace [A]dd Folder'})
+map('n','<leader>wr', vim.lsp.buf.remove_workspace_folder, {desc='[W]orkspace [R]emove Folder'})
 
 --leaving the <leader>nt because this is what I'm used to from nerdtree....but over time if I can get used to <leader>oi, i'll remove it
-vim.keymap.set('n', "<leader>nt", require('oil').open_float, { desc = 'Open Oil', silent = true })
-vim.keymap.set('n', "<leader>oi", require('oil').open_float, { desc = 'Open Oil', silent = true })
+map('n', "<leader>nt", require('oil').open_float, { desc = 'Open Oil', silent = true })
+map('n', "<leader>oi", require('oil').open_float, { desc = 'Open Oil', silent = true })
 
 --harpoon
-local harpoon = require("harpoon")
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-vim.keymap.set("n", "<leader>pe",function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+map("n", "<leader>a", function() harpoon:list():add() end)
+map("n", "<leader>pe",function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+map("n", "<leader>1", function() harpoon:list():select(1) end)
+map("n", "<leader>2", function() harpoon:list():select(2) end)
+map("n", "<leader>3", function() harpoon:list():select(3) end)
+map("n", "<leader>4", function() harpoon:list():select(4) end)
 
 -- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+map("n", "<C-S-P>", function() harpoon:list():prev() end)
+map("n", "<C-S-N>", function() harpoon:list():next() end)
 
-vim.keymap.set({'n','v'}, '<leader>ca', vim.lsp.buf.code_action, {desc='LSP: [Code] Action'})
-vim.keymap.set({'n'},'<leader>cr', vim.lsp.buf.rename, {desc='LSP: [C]ode [R]ename'})
-vim.keymap.set({'n'},'<leader>rn', vim.lsp.buf.rename, {desc='LSP: [R]e[n]ame'})
+map({'n','v'}, '<leader>ca', vim.lsp.buf.code_action, {desc='LSP: [Code] Action'})
+map({'n'},'<leader>cr', vim.lsp.buf.rename, {desc='LSP: [C]ode [R]ename'})
+map({'n'},'<leader>rn', vim.lsp.buf.rename, {desc='LSP: [R]e[n]ame'})
 
-vim.keymap.set({'n'},'<leader>du', vim.lsp.buf.rename, {desc='LSP: [R]e[n]ame'})
+map({'n'},'<leader>du', vim.lsp.buf.rename, {desc='LSP: [R]e[n]ame'})
+
 
 --debugger
-vim.keymap.set('n', "<leader>du", function() require("dapui").toggle({ }) end, {desc = "Dap UI" })
-vim.keymap.set('n', "<leader>de", function() require("dapui").eval() end, {desc = "Eval"})
-vim.keymap.set('n', '<F5>', function() require('dap').continue() end, { desc="Debug Continue [F5]"})
-vim.keymap.set('n', '<F10>', function() require('dap').step_over() end, { desc="Debug Step Over [F10]" })
-vim.keymap.set('n', '<F11>', function() require('dap').step_into() end, { desc="Debug Step Into [F11]" })
-vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, { desc="Debug Step Out [F12]" })
-vim.keymap.set('n', '<F9>', function() require('dap').toggle_breakpoint() end, { desc="Debug Toggle Breakpoint [F9]" })
-vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
-vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
-vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
-vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
-vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+map('n', "<leader>du", function() require("dapui").toggle({ }) end, {desc = "Dap UI" })
+map('n', "<leader>de", function() require("dapui").eval() end, {desc = "Eval"})
+map('n', '<F5>', function() dap.continue() end, { desc="Debug Continue [F5]"})
+map('n', '<F10>', function() dap.step_over() end, { desc="Debug Step Over [F10]" })
+map('n', '<F11>', function() dap.step_into() end, { desc="Debug Step Into [F11]" })
+map('n', '<F12>', function() dap.step_out() end, { desc="Debug Step Out [F12]" })
+map('n', '<F9>', function() dap.toggle_breakpoint() end, { desc="Debug Toggle Breakpoint [F9]" })
+map('n', '<Leader>B', function() dap.set_breakpoint() end)
+map('n', '<Leader>lp', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+map('n', '<Leader>dr', function() dap.repl.open() end)
+map('n', '<Leader>dl', function() dap.run_last() end)
+map({'n', 'v'}, '<Leader>dh', function()
 	require('dap.ui.widgets').hover()
 end)
-vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+map({'n', 'v'}, '<Leader>dp', function()
 	require('dap.ui.widgets').preview()
 end)
-vim.keymap.set('n', '<Leader>df', function()
+map('n', '<Leader>df', function()
 	local widgets = require('dap.ui.widgets')
 	widgets.centered_float(widgets.frames)
 end)
-vim.keymap.set('n', '<Leader>ds', function()
+map('n', '<Leader>ds', function()
 	local widgets = require('dap.ui.widgets')
 	widgets.centered_float(widgets.scopes)
 end)
+
+map("n", "<leader>dt", function () require('neotest').run.run() end, { noremap = true, silent = true, desc = '[d]otnet [t]est nearest' })
+map("n", "<leader>ddt", function () require('neotest').run.run({strategy = "dap"}) end, { noremap = true, silent = true, desc = '[d]otnet [d]ebug [t]est nearest' })
+map("n", "<leader>tw", function () require('neotest').summary.toggle() end, { noremap = true, silent = true, desc = 'toggle [t]est [w]indow' })
