@@ -57,7 +57,7 @@ URL=https://github.com/neovim/neovim/releases/download/v$NEOVIM_VERSION/$TAR
 
 # Download and extract
 	wget -q $URL -O $OUTFILE && 
-	tar xzf $OUTFILE && 
+	tar xzf $OUTFILE -C $TEMP_DIR && 
 	sudo mv $TEMP_DIR/$FOLDER $INSTALL_DIR
 
 # Create a symlink
@@ -86,3 +86,6 @@ sudo rm powershell_$PWSH_VERSION-1.deb_amd64.deb
 
 #cleanup
 rm $TEMP_DIR -rf
+
+echo "✅ Dev environment setup complete."
+
