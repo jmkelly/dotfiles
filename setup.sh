@@ -51,12 +51,13 @@ INSTALL_DIR=/opt/nvim
 ARCH=x86_64
 FOLDER=nvim-linux-$ARCH
 TAR=$FOLDER.tar.gz
+OUTFILE=$TEMP_DIR/$TAR
 
 URL=https://github.com/neovim/neovim/releases/download/v$NEOVIM_VERSION/$TAR
 
 # Download and extract
-	wget -q $URL -O $TEMP_DIR/$TAR && \
-	tar xzf $TEMP_DIR/$TAR && \
+	wget -q $URL -O $OUTFILE && 
+	tar xzf $OUTFILE && 
 	sudo mv $TEMP_DIR/$FOLDER $INSTALL_DIR
 
 # Create a symlink
