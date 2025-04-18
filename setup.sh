@@ -32,9 +32,9 @@ sudo apt-get update && sudo apt-get install -y software-properties-common wget n
 FONT_NAME=JetBrainsMono
 FONT_VERSION=v3.2.1
 
-sudo mkdir -p /usr/share/fonts/nerdfonts && \
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/$FONT_VERSION/$FONT_NAME.zip -O /tmp/$FONT_NAME.zip && \
-	sudo unzip /tmp/$FONT_NAME.zip -d /usr/share/fonts/nerdfonts/ && \ fc-cache -fv && \
+sudo mkdir -p /usr/share/fonts/nerdfonts && 
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/$FONT_VERSION/$FONT_NAME.zip -O /tmp/$FONT_NAME.zip && 
+	sudo unzip /tmp/$FONT_NAME.zip -d /usr/share/fonts/nerdfonts/ &&  fc-cache -fv && 
 	sudo rm /tmp/$FONT_NAME.zip
 
 
