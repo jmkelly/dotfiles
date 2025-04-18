@@ -6,6 +6,9 @@
 
 #some setup
 #clone my neovim config quick start
+
+
+sudo apt update && sudo apt install -y curl git #git most likely will already be installed, but just in case it isn't
 TEMP_DIR=/tmp/dotfiles
 mkdir -p $TEMP_DIR
 mkdir -p $HOME/.config/wezterm
@@ -23,7 +26,7 @@ curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/ap
 echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 
 # Update the package list and install necessary packages
-sudo apt-get update && sudo apt-get install -y software-properties-common curl wget git npm fontconfig unzip ripgrep fd-find dotnet-sdk-8.0 wezterm tmux && sudo rm -rf /var/lib/apt/lists/*
+sudo apt-get update && sudo apt-get install -y software-properties-common wget npm fontconfig unzip ripgrep fd-find dotnet-sdk-8.0 wezterm tmux && sudo rm -rf /var/lib/apt/lists/*
 
 # Install a Nerd Font (e.g., FiraCode Nerd Font)
 FONT_NAME=JetBrainsMono
