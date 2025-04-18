@@ -34,6 +34,9 @@ cd dotfiles
 
 ![lazygit](Screenshot%20from%202024-12-05%2020-31-53.png)
 
-![neovim](Screenshot%20from%202024-12-05%2020-31-33.png)
+![neovim](Screenshot%20from%202025-04-18%2015-30-41.png)
+
+![neovim dotnet debugger](Screenshot%20from%202025-04-18%2015-27-04.png)
+
 
 
