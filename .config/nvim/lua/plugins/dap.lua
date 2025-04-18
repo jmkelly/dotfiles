@@ -1,17 +1,43 @@
+local dotnet = require("config.dotnet")
+
 return {
 	{
 		"mfussenegger/nvim-dap",
 		recommended = true,
+		event = "VeryLazy",
 		desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
 
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
-			-- virtual text for the debugger
-			{
-				"theHamsta/nvim-dap-virtual-text",
-				opts = {},
-			},
+			"nvim-neotest/nvim-nio",
+			"theHamsta/nvim-dap-virtual-text",
 		},
+		config = function()
+			local dap = require("dap")
+			vim.fn.sign_define('DapBreakpoint',{
+				text = '🔴', -- nerdfonts icon here
+				texthl = 'DapBreakpointSymbol',
+				linehl = 'DapBreakpoint',
+				numhl = 'DapBreakpoint'
+			  })
+			dap.adapters.coreclr = {
+				type = "executable",
+				command = "netcoredbg",
+				args = { "--interpreter=vscode" },
+			}
+
+			dap.configurations.cs = {
+				{
+					type = "coreclr",
+					name = "launch - netcoredbg",
+					request = "launch",
+					program = function()
+						return  dotnet.get_dll_path()					
+					end,
+				},
+
+			}
+		end,
 	},
 
 	-- fancy UI for the debugger
@@ -34,12 +60,5 @@ return {
 				dapui.close({})
 			end
 		end,
-	},
-	{ 
-		'nicholasmata/nvim-dap-cs', 
-		dependencies = { 'mfussenegger/nvim-dap' } ,
-		config = function()
-			require('dap-cs').setup()
-		end
 	}
 }
