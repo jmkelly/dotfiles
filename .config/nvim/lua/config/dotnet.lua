@@ -10,18 +10,18 @@ local terminal_config = {
 	height_ratio = 0.6,
 	row_ratio = 0.2,
 	col_ratio = 0.1,
-	border = 'rounded',
+	border = "rounded",
 }
 
 local function create_win(bufnr, options)
-	local merged_options = vim.tbl_extend('force', terminal_config, options or {})
+	local merged_options = vim.tbl_extend("force", terminal_config, options or {})
 	local win = vim.api.nvim_open_win(bufnr, true, {
-		relative = 'editor',
+		relative = "editor",
 		width = math.floor(vim.o.columns * merged_options.width_ratio),
 		height = math.floor(vim.o.lines * merged_options.height_ratio),
 		row = math.floor(vim.o.lines * merged_options.row_ratio),
 		col = math.floor(vim.o.columns * merged_options.col_ratio),
-		style = 'minimal',
+		style = "minimal",
 		border = merged_options.border,
 	})
 	return win
@@ -64,13 +64,9 @@ vim.api.nvim_create_user_command("DotnetLogs", function()
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 	vim.bo[buf].filetype = "log"
 	create_win(buf)
-
-end,
-	{
-		desc = "Open the dotnet.log file in a new buffer",
-	}
-)
-
+end, {
+	desc = "Open the dotnet.log file in a new buffer",
+})
 
 local function find_csproj_path(start_path)
 	local function is_root(path)
@@ -79,11 +75,15 @@ local function find_csproj_path(start_path)
 
 	local function scandir(path)
 		local handle = uv.fs_scandir(path)
-		if not handle then return {} end
+		if not handle then
+			return {}
+		end
 		local entries = {}
 		while true do
 			local name, type = uv.fs_scandir_next(handle)
-			if not name then break end
+			if not name then
+				break
+			end
 			table.insert(entries, { name = name, type = type })
 		end
 		return entries
@@ -96,7 +96,9 @@ local function find_csproj_path(start_path)
 				return dir .. "/" .. entry.name
 			end
 		end
-		if is_root(dir) then break end
+		if is_root(dir) then
+			break
+		end
 		dir = uv.fs_realpath(dir .. "/..")
 	end
 	return nil
@@ -124,7 +126,9 @@ function M.get_dll_path()
 	if handle then
 		while true do
 			local name, type = uv.fs_scandir_next(handle)
-			if not name then break end
+			if not name then
+				break
+			end
 			if type == "directory" then
 				table.insert(frameworks, name)
 			end
@@ -157,7 +161,6 @@ function M.get_dll_path()
 	end
 end
 
-
 local function get_nearest_test_name()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local cursor = vim.api.nvim_win_get_cursor(0)
@@ -170,8 +173,12 @@ local function get_nearest_test_name()
 
 	-- Get the node directly under the cursor
 	local function get_node_at_pos(node, row, col)
-		if not node then return nil end
-		if not node:range() then return nil end
+		if not node then
+			return nil
+		end
+		if not node:range() then
+			return nil
+		end
 
 		if node:child_count() == 0 then
 			return node
@@ -179,8 +186,10 @@ local function get_nearest_test_name()
 
 		for child in node:iter_children() do
 			local start_row, start_col, end_row, end_col = child:range()
-			if (row > start_row or (row == start_row and col >= start_col)) and
-				(row < end_row or (row == end_row and col <= end_col)) then
+			if
+				(row > start_row or (row == start_row and col >= start_col))
+				and (row < end_row or (row == end_row and col <= end_col))
+			then
 				return get_node_at_pos(child, row, col) or child
 			end
 		end
@@ -197,7 +206,9 @@ local function get_nearest_test_name()
 		elseif not class_node and node:type() == "class_declaration" then
 			class_node = node
 		end
-		if method_node and class_node then break end
+		if method_node and class_node then
+			break
+		end
 		node = node:parent()
 	end
 
@@ -228,13 +239,12 @@ local function get_nearest_test_name()
 		local namespace = string.match(content, namespace_regex)
 
 		-- Return the namespace if found, or nil if not found
-		if namespace and namespace ~= '' then
+		if namespace and namespace ~= "" then
 			return namespace
 		else
 			return nil
 		end
 	end
-
 
 	local method_name = get_identifier(method_node)
 	local class_name = get_identifier(class_node)
@@ -266,7 +276,8 @@ local function run_in_terminal(cmd)
 					vim.notify("Command failed: " .. cmd, vim.log.levels.ERROR)
 				end
 			end)
-		end	})
+		end,
+	})
 end
 
 function M.build_no_restore()
@@ -294,4 +305,3 @@ function M.test_nearest()
 end
 
 return M
-
