@@ -14,12 +14,12 @@ return {
 		},
 		config = function()
 			local dap = require("dap")
-			vim.fn.sign_define('DapBreakpoint',{
-				text = '🔴', -- nerdfonts icon here
-				texthl = 'DapBreakpointSymbol',
-				linehl = 'DapBreakpoint',
-				numhl = 'DapBreakpoint'
-			  })
+			vim.fn.sign_define("DapBreakpoint", {
+				text = "🔴", -- nerdfonts icon here
+				texthl = "DapBreakpointSymbol",
+				linehl = "DapBreakpoint",
+				numhl = "DapBreakpoint",
+			})
 			dap.adapters.coreclr = {
 				type = "executable",
 				command = "netcoredbg",
@@ -32,10 +32,9 @@ return {
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
-						return  dotnet.get_dll_path()					
+						return dotnet.get_dll_path()
 					end,
 				},
-
 			}
 		end,
 	},
@@ -60,5 +59,5 @@ return {
 				dapui.close({})
 			end
 		end,
-	}
+	},
 }
