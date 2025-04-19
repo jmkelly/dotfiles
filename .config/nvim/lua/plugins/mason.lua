@@ -21,6 +21,7 @@ return {
 			"williamboman/mason.nvim",
 		},
 		config = function()
+			require("lspconfig").lua_ls.setup{}
 			require("mason-nvim-dap").setup({
 				ensure_installed = { "netcoredbg" }, -- Add DAPs you want
 				automatic_installation = true, -- optional: installs when dap config is added
