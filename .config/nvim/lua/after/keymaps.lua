@@ -126,8 +126,7 @@ map("n", "<leader>tw", function()
 end, { noremap = true, silent = true, desc = "toggle [t]est [w]indow" })
 
 map("n", "<leader>db", dotnet.build_no_restore, { desc = "[D]otnet [B]uild", silent = true })
-map("n", "<leader>dt", dotnet.test_nearest_no_build, { desc = "[D]otnet [T]est nearest", silent = true })
 map("n", "<leader>dr", dotnet.restore, { desc = "[D]otnet [R]estore", silent = true })
-map("n", "<leader>dbt", dotnet.test_nearest, { desc = "[D]otnet [B]uild and [T]est nearest", silent = true })
+map("n", "<leader>dt", dotnet.test_nearest, { desc = "[D]otnet [T]est nearest", silent = true })
 
 map({ "n", "v" }, "<leader>f", conform.format, { desc = "[F]ormat file" })
