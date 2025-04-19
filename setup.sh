@@ -4,7 +4,7 @@
 # shell script to setup a base dev setup on host
 
 sudo apt update && sudo apt install -y curl git #git most likely will already be installed, but just in case it isn't
-sudo add-apt-repository ppa:dotnet/backports
+sudo add-apt-repository ppa:dotnet/backports -y
 
 TEMP_DIR=/tmp/dotfiles
 
