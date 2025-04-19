@@ -301,6 +301,10 @@ function M.build_no_restore()
 	run_in_terminal("dotnet build --no-restore")
 end
 
+function M.restore()
+	run_in_terminal("dotnet restore")
+end
+
 function M.test_nearest_no_build()
 	local test_name = get_nearest_test_name()
 	if not test_name then
