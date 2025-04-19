@@ -273,6 +273,16 @@ function M.build_no_restore()
 	run_in_terminal("dotnet build --no-restore")
 end
 
+function M.test_nearest_no_build()
+	local test_name = get_nearest_test_name()
+	if not test_name then
+		vim.notify("Could not determine nearest test method.", vim.log.levels.WARN)
+		return
+	end
+	local cmd = "dotnet test --no-build --no-restore --filter FullyQualifiedName~" .. test_name
+	run_in_terminal(cmd)
+end
+
 function M.test_nearest()
 	local test_name = get_nearest_test_name()
 	if not test_name then
