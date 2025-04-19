@@ -6,6 +6,10 @@ return {
 					require("neotest-dotnet")({
 					dap = {
 						adapter_name = "coreclr",
+					},
+					dotnet_additional_args = {
+						"--no-build",
+						"--no-restore"
 					}
 						-- discovery_root = "solution"
 					})
