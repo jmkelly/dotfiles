@@ -8,6 +8,7 @@ local dap = require('dap')
 local harpoon = require("harpoon")
 local telescope = require("telescope.builtin")
 local dotnet = require("config.dotnet")
+local conform = require("conform")
 
 
 map('n', '<leader><space>', telescope.buffers, { desc = '[ ] Find existing buffers' })
@@ -91,3 +92,5 @@ map("n", "<leader>tw", function () require('neotest').summary.toggle() end, { no
 map('n', '<leader>db', dotnet.build_no_restore, { desc = '[D]otnet [B]uild' , silent = true })
 map('n', '<leader>dt', dotnet.test_nearest_no_build, { desc = '[D]otnet [T]est nearest' , silent = true })
 map('n', '<leader>dbt', dotnet.test_nearest, { desc = '[D]otnet [B]uild and [T]est nearest' , silent = true })
+
+map ({'n', 'v'}, '<leader>f', conform.format, {desc = '[F]ormat file'})
