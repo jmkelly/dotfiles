@@ -5,16 +5,19 @@ local M = {}
 
 local log_path = vim.fn.stdpath("log") .. "/dotnet.log"
 
+-- Modified terminal configuration for bottom placement
 local terminal_config = {
-	width_ratio = 0.8,
-	height_ratio = 0.6,
-	row_ratio = 0.2,
-	col_ratio = 0.1,
+	width_ratio = 1.0, -- Full width
+	height_ratio = 0.25, -- Take up 25% of screen height
+	row_ratio = 0.75, -- Position at 75% from top (bottom area)
+	col_ratio = 0.0, -- Start from left edge
 	border = "rounded",
 }
 
 local function create_win(bufnr, options)
 	local merged_options = vim.tbl_extend("force", terminal_config, options or {})
+
+	-- First create the window with focus
 	local win = vim.api.nvim_open_win(bufnr, true, {
 		relative = "editor",
 		width = math.floor(vim.o.columns * merged_options.width_ratio),
@@ -24,6 +27,7 @@ local function create_win(bufnr, options)
 		style = "minimal",
 		border = merged_options.border,
 	})
+
 	return win
 end
 
@@ -257,13 +261,18 @@ local function get_nearest_test_name()
 	return nil
 end
 
--- Floating terminal runner
+-- Modified floating terminal runner that doesn't steal focus
 local function run_in_terminal(cmd)
+	-- Store the current window
+	local current_win = vim.api.nvim_get_current_win()
+
+	-- Create buffer and window
 	local bufnr = vim.api.nvim_create_buf(false, true)
 	local win = create_win(bufnr)
+
+	-- Run the command in the terminal buffer
 	vim.fn.termopen(cmd, {
 		on_exit = function(_, exit_code, _)
-			vim.notify("exit code", exit_code)
 			vim.schedule(function()
 				if exit_code == 0 then
 					if vim.api.nvim_win_is_valid(win) then
@@ -273,11 +282,19 @@ local function run_in_terminal(cmd)
 						vim.api.nvim_buf_delete(bufnr, { force = true })
 					end
 				else
-					vim.notify("Command failed: " .. cmd, vim.log.levels.ERROR)
+					-- For failures, keep the window open, retain focus,scroll to the bottom and go into insert mode
+					vim.api.nvim_set_current_win(win)
+					vim.api.nvim_win_call(win, function()
+						vim.cmd("normal! G")
+						vim.cmd("startinsert")
+					end)
 				end
 			end)
 		end,
 	})
+
+	-- Return focus to the original window immediately after creating terminal
+	vim.api.nvim_set_current_win(current_win)
 end
 
 function M.build_no_restore()
