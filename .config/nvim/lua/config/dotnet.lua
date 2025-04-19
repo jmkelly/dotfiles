@@ -1,5 +1,4 @@
 --helper functions specific to dotnet
-
 local uv = vim.loop
 
 local M = {}
@@ -63,7 +62,7 @@ vim.api.nvim_create_user_command("DotnetLogs", function()
 	-- Create a new scratch buffer
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-	vim.bo[buf].filetype = "log" 
+	vim.bo[buf].filetype = "log"
 	create_win(buf)
 
 end,
@@ -190,7 +189,7 @@ local function get_nearest_test_name()
 	end
 
 	local node = get_node_at_pos(root, row, col)
-	local method_node, class_node, namespace_node
+	local method_node, class_node
 
 	while node do
 		if not method_node and (node:type() == "method_declaration" or node:type() == "function_declaration") then
