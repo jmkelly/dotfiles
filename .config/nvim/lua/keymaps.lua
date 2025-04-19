@@ -31,7 +31,6 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list
 map('t', 'kj', "<C-\\><C-N>", { desc = 'return to normal mode. |CTRL-\\_CTRL-N' })
 
 --build in terminal
-map('n', '<leader>db', ':term<CR>adotnet build --no-restore<CR>exit<CR><CR>', { desc = '[D]otnet [B]uild' , silent = true })
 
 --some toggleterm shortcuts
 map('n', '<leader>ht', ':ToggleTerm direction=horizontal<CR>', { desc = '[H]orizontal terminal', silent = true })
