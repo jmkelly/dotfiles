@@ -7,6 +7,7 @@ local opts = { noremap = true, silent = true }
 local dap = require('dap')
 local harpoon = require("harpoon")
 local telescope = require("telescope.builtin")
+local dotnet = require("config.dotnet")
 
 
 map('n', '<leader><space>', telescope.buffers, { desc = '[ ] Find existing buffers' })
@@ -83,6 +84,9 @@ map('n', '<Leader>ds', function()
 	widgets.centered_float(widgets.scopes)
 end)
 
-map("n", "<leader>dt", function () require('neotest').run.run() end, { noremap = true, silent = true, desc = '[d]otnet [t]est nearest' })
+--map("n", "<leader>dt", function () require('neotest').run.run() end, { noremap = true, silent = true, desc = '[d]otnet [t]est nearest' })
 map("n", "<leader>ddt", function () require('neotest').run.run({strategy = "dap"}) end, { noremap = true, silent = true, desc = '[d]otnet [d]ebug [t]est nearest' })
 map("n", "<leader>tw", function () require('neotest').summary.toggle() end, { noremap = true, silent = true, desc = 'toggle [t]est [w]indow' })
+
+map('n', '<leader>db', dotnet.build_no_restore, { desc = '[D]otnet [B]uild' , silent = true })
+map('n', '<leader>dt', dotnet.test_nearest, { desc = '[D]otnet [T]est nearest' , silent = true })
