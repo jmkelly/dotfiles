@@ -1,5 +1,3 @@
-local dotnet = require("config.dotnet")
-
 return {
 	{
 		"mfussenegger/nvim-dap",
@@ -11,9 +9,11 @@ return {
 			"rcarriga/nvim-dap-ui",
 			"nvim-neotest/nvim-nio",
 			"theHamsta/nvim-dap-virtual-text",
+			"jmkelly/dbt.nvim",
 		},
 		config = function()
 			local dap = require("dap")
+			local dbt = require("dbt")
 			vim.fn.sign_define("DapBreakpoint", {
 				text = "🔴", -- nerdfonts icon here
 				texthl = "DapBreakpointSymbol",
@@ -32,7 +32,7 @@ return {
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
-						return dotnet.get_dll_path()
+						return dbt.get_dll_path()
 					end,
 				},
 			}
