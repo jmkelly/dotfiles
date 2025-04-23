@@ -3,7 +3,6 @@ local map = vim.keymap.set
 local dap = require("dap")
 local harpoon = require("harpoon")
 local telescope = require("telescope.builtin")
-local dotnet = require("config.dotnet")
 local conform = require("conform")
 
 map("n", "<leader><space>", telescope.buffers, { desc = "[ ] Find existing buffers" })
@@ -124,9 +123,5 @@ end, { noremap = true, silent = true, desc = "[d]otnet [d]ebug [t]est nearest" }
 map("n", "<leader>tw", function()
 	require("neotest").summary.toggle()
 end, { noremap = true, silent = true, desc = "toggle [t]est [w]indow" })
-
-map("n", "<leader>db", dotnet.build_no_restore, { desc = "[D]otnet [B]uild", silent = true })
-map("n", "<leader>dr", dotnet.restore, { desc = "[D]otnet [R]estore", silent = true })
-map("n", "<leader>dt", dotnet.test_nearest, { desc = "[D]otnet [T]est nearest", silent = true })
 
 map({ "n", "v" }, "<leader>f", conform.format, { desc = "[F]ormat file" })
