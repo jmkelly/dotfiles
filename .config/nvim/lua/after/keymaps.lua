@@ -60,8 +60,6 @@ map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [Code] A
 map({ "n" }, "<leader>cr", vim.lsp.buf.rename, { desc = "LSP: [C]ode [R]ename" })
 map({ "n" }, "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame" })
 
-map({ "n" }, "<leader>du", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame" })
-
 --debugger
 map("n", "<leader>du", function()
     require("dapui").toggle({})
@@ -90,7 +88,7 @@ end)
 map("n", "<Leader>lp", function()
     dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end)
-map("n", "<Leader>dr", function()
+map("n", "<Leader>dro", function()
     dap.repl.open()
 end)
 map("n", "<Leader>dl", function()
@@ -120,3 +118,7 @@ map("n", "<leader>tw", function()
 end, { noremap = true, silent = true, desc = "toggle [t]est [w]indow" })
 
 map({ "n", "v" }, "<leader>f", conform.format, { desc = "[F]ormat file" })
+
+map("n", "<leader>dr", function()
+    require("dbt").restore()
+end, { desc = "[D]otnet [R]estore" })

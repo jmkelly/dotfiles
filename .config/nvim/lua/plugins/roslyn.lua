@@ -1,7 +1,9 @@
 return {
-	"seblj/roslyn.nvim",
-	ft = "cs",
-	opts = {
-		-- your configuration comes here; leave empty for default settings
-	},
+    --"seblj/roslyn.nvim",
+    dir = "~/Documents/code/roslyn.nvim",
+    name = "roslyn.nvim",
+    ft = "cs",
+    --@module 'roslyn.config'
+    --@type 'RoslynNvimConfig'
+    opts = {},
 }
