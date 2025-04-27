@@ -17,7 +17,17 @@ return {
 			})
 		end,
 	},
-	{ "neovim/nvim-lspconfig" }, --no setup function on lsp-config
+	{
+		"neovim/nvim-lspconfig",
+		opts = {},
+		config = function()
+			require("lspconfig").lua_ls.setup({
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = false
+				end,
+			})
+		end,
+	}, --no setup function on lsp-config
 	{
 		"jay-babu/mason-nvim-dap.nvim",
 		dependencies = {
