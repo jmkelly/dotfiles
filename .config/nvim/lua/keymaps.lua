@@ -31,12 +31,6 @@ map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list
 
 map("t", "kj", "<C-\\><C-N>", { desc = "return to normal mode. |CTRL-\\_CTRL-N" })
 
---build in terminal
-
---some toggleterm shortcuts
-map("n", "<leader>ht", ":ToggleTerm direction=horizontal<CR>", { desc = "[H]orizontal terminal", silent = true })
-map("n", "<leader>vt", ":ToggleTerm direction=vertical size=60<CR>", { desc = "[V]ertical terminal", silent = true })
-
 --move whole lines in visual mode
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
