@@ -34,3 +34,4 @@ map("t", "kj", "<C-\\><C-N>", { desc = "return to normal mode. |CTRL-\\_CTRL-N" 
 --move whole lines in visual mode
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
+map("n", "<leader>lr", ":luafile %<CR>", { desc = "[L]uafile [R]un" })
