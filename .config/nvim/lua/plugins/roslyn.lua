@@ -1,7 +1,7 @@
 return {
-    --"seblj/roslyn.nvim",
-    dir = "~/Documents/code/roslyn.nvim",
-    name = "roslyn.nvim",
+    "seblj/roslyn.nvim",
+    -- dir = "~/Documents/code/roslyn.nvim",
+    -- name = "roslyn.nvim",
     ft = "cs",
     --@module 'roslyn.config'
     --@type 'RoslynNvimConfig'
