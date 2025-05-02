@@ -8,7 +8,7 @@ local conform = require("conform")
 map("n", "<leader><space>", telescope.buffers, { desc = "[ ] Find existing buffers" })
 map("n", "<leader>gf", telescope.git_files, { desc = "Search [G]it [F]iles" })
 map("n", "<leader>ff", telescope.find_files, { desc = "[F]ind [F]iles" })
-map("n", "<leader>sh", telescope.help_tags, { desc = "[S]earch [H]elp" })
+map("n", "<leader>fh", telescope.help_tags, { desc = "[S]earch [H]elp" })
 map("n", "<leader>fg", telescope.live_grep, { desc = "[F]ind by [G]rep" })
 
 --lsp jumps
