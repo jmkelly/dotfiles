@@ -8,6 +8,7 @@ map({ "i" }, "kj", "<Esc>", { silent = true })
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "LSP: [Code] Action" })
 map({ "n" }, "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr, desc = "LSP: [C]ode [R]ename" })
 map({ "n" }, "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "LSP: [R]e[n]ame" })
+map({ "n" }, "<leader>s", "<Esc>:w<CR>", { silent = true, desc = "[S]ave file" })
 
 --try to keep all my keymappings in here so I know where I can
 --go when i have any conflicts
