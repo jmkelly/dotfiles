@@ -12,6 +12,7 @@ URL=https://github.com/neovim/neovim/releases/download/v$NEOVIM_VERSION/$TAR
 # Download and extract
 	wget -q $URL -O $OUTFILE && 
 	tar xzf $OUTFILE -C $TEMP_DIR && 
+	sudo rm -rf $INSTALL_DIR
 	sudo mv $TEMP_DIR/$FOLDER $INSTALL_DIR
 
 # Create a symlink
