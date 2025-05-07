@@ -13,7 +13,7 @@ return {
         opts = {},
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls" }, --i would like to have rosyln here, but its not an "offical" mason lsp package so it won't automatically install
+                automatic_enable = { "lua_ls" },
             })
         end,
     },
