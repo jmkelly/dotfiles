@@ -10,6 +10,7 @@ map("n", "<leader>gf", telescope.git_files, { desc = "Search [G]it [F]iles" })
 map("n", "<leader>ff", telescope.find_files, { desc = "[F]ind [F]iles" })
 map("n", "<leader>fh", telescope.help_tags, { desc = "[S]earch [H]elp" })
 map("n", "<leader>fg", telescope.live_grep, { desc = "[F]ind by [G]rep" })
+map("n", "<leader>fd", telescope.diagnostics, { desc = "[F]ind [D]iagnostics" })
 
 --lsp jumps
 map("n", "gd", telescope.lsp_definitions, { desc = "[G]oto [D]efinition" })
