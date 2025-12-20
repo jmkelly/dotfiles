@@ -21,11 +21,12 @@ return {
         "neovim/nvim-lspconfig",
         opts = {},
         config = function()
-            require("lspconfig").lua_ls.setup({
-                on_attach = function(client)
-                    client.server_capabilities.documentFormattingProvider = false
-                end,
-            })
+			vim.lsp.config('lua_ls', {
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = false
+				end
+			})
+			vim.lsp.enable('lua_ls')
         end,
     },
     {
@@ -35,7 +36,6 @@ return {
             "williamboman/mason.nvim",
         },
         config = function()
-            require("lspconfig").lua_ls.setup({})
             require("mason-nvim-dap").setup({
                 ensure_installed = { "netcoredbg" }, -- Add DAPs you want
                 automatic_installation = true, -- optional: installs when dap config is added
