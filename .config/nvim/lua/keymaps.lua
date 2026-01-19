@@ -36,3 +36,25 @@ map("t", "kj", "<C-\\><C-N>", { desc = "return to normal mode. |CTRL-\\_CTRL-N" 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 map("n", "<leader>lr", ":luafile %<CR>", { desc = "[L]uafile [R]un" })
+
+local function open_in_vsplit_terminal(cmd)
+    vim.cmd("vsplit")
+    vim.cmd("wincmd l") -- move to the right split
+    vim.cmd("terminal")
+    vim.fn.feedkeys("a")
+    local enter = vim.api.nvim_replace_termcodes("<CR>", true, true, true)
+    vim.fn.feedkeys(cmd .. enter)
+end
+
+--some terminal commands that open in vertical split to save some typing
+map("n", "<leader>oc", function()
+    open_in_vsplit_terminal("opencode")
+end, { desc = "[O]pen[C]ode" })
+
+map("n", "<leader>lg", function()
+    open_in_vsplit_terminal("lazygit")
+end, { desc = "[L]azy[G]it" })
+
+map("n", "<leader>gd", function()
+    open_in_vsplit_terminal("git diff")
+end, { desc = "[G]it [D]iff" })
