@@ -78,5 +78,3 @@ Return your review in valid JSON format:
 - Comments/docstrings/annotations explain non-obvious logic.
 - Flow of control is clear; complex logic is broken up sensibly.
 - The code avoids unnecessary complexity, duplication, and obscure constructs.
-
-(See CodeQUEST Appendix B for full statement lists per dimension.)

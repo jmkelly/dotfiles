@@ -1,7 +1,7 @@
 ---
 description: Writes and edits code following strict, modern architectural best practices and mandatory coding principles, using current documentation as reference.
 mode: subagent
-model: github-copilot/gpt-5.2-codex
+model: github-copilot/gpt-5.4
 ---
 ALWAYS use the #context7 MCP Server to consult current documentation for any language/framework/library before implementation. Document your work and apply these principles:
 
