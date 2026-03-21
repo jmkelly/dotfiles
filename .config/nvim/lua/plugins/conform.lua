@@ -7,13 +7,7 @@ return {
         require("conform").setup({
             formatters_by_ft = {
                 lua = { "stylua" },
-                cs = {
-                    csharpier = {
-                        --workaround until https://github.com/stevearc/conform.nvim/pull/695 is merged
-                        command = "csharpier",
-                        args = "format",
-                    },
-                },
+                cs = { "csharpier" },
                 sql = { "sqruff" },
             },
             format_after_save = {
