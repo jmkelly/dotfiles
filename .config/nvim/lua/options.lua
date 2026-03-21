@@ -23,7 +23,7 @@ vim.o.smartcase = true
 vim.wo.signcolumn = "yes"
 
 -- Decrease update time
-vim.o.updatetime = 200
+vim.o.updatetime = 50
 vim.o.timeoutlen = 200
 
 --set relative line numbers for better navigation
