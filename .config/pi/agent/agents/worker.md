@@ -1,0 +1,1 @@
+/home/james/.nvm/versions/node/v24.13.0/lib/node_modules/@mariozechner/pi-coding-agent/examples/extensions/subagent/agents/worker.md
