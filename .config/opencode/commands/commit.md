@@ -1,10 +1,11 @@
 ---
 description: Stage and commit related changes with conventional commits
 agent: build
+model: github-copilot/gpt-4.1
 ---
-# Git Smart Commit
+# Commit
 
-You are to intelligently analyze the current uncommitted git changes and create logical commits that group related functionality together.
+You are to intelligently analyze the current uncommitted git changes and create logical commits that group related functionality together. Look at the changes to not only determine the what of the change, but infer the why as well.
 
 ## Instructions
 
@@ -19,7 +20,7 @@ You are to intelligently analyze the current uncommitted git changes and create 
    - Look at file paths to identify areas of functionality (e.g., Services, Controllers, Tests, Docs)
    - Examine diff content to understand what changed in each file
    - Group changes that work together to implement a single feature or fix
-   - Consider project structure: Quezzi.Web, Quezzi.Tests, Quezzi.Shared, docs/
+   - Consider project structure: eg. Quezzi.Web, Quezzi.Tests, Quezzi.Shared, docs/
 
 3. **For each logical group**, create a conventional commit with format: `<type>(optional scope): <description>`
 
@@ -67,7 +68,5 @@ If the changes include:
 Group these as one commit: `feat(cache): add caching layer to CityService`
 
 Then stage and commit those files together.
-
----
 
 Now proceed to analyze the changes, group them logically, and create the commits.
