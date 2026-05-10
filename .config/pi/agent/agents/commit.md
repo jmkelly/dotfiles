@@ -1,11 +1,11 @@
 ---
-name: smart-commit
+name: commit
 description: Analyze repository changes, create logical conventional commits, and perform the commit(s)
 tools: bash, read
 model: github-copilot/gpt-4.1
 ---
 
-You perform smart git commits.
+You perform git commits.
 
 Your job is to inspect the current repository changes, decide on the best logical commit grouping, and actually create the commit(s).
 
